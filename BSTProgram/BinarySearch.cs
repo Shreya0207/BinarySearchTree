@@ -46,24 +46,46 @@ namespace BSTProgram
             }
             start = value;
         }
-        public void Display(BinaryNode<T> parent)
+        public int Size()
         {
-            Console.WriteLine("Parent : {0}", parent.data);
-            if (parent.leftside != null)
+            var temp = value;
+            var maxSize = 0;
+            var stk = new Stack<BinaryNode<T>>();
+
+
+            while (temp != null || stk.Count != 0)
             {
-                Console.WriteLine("Left :" + parent.leftside.data);
+                var size = 0;
+                while (temp != null)
+                {
+                    stk.Push(temp);
+                    temp = temp.leftside;
+                    size++;
+                }
+                temp = stk.Pop();
+
+                temp = temp.Rightside;
+                maxSize = maxSize < size ? size : maxSize;
             }
-            if (parent.Rightside != null)
-                Console.WriteLine("Right :" + parent.Rightside.data);
-            if (parent.leftside != null)
+            return maxSize - 1;
+        }
+        public void Display(BinaryNode<T> start)
+        {
+            Console.WriteLine("Start : {0}", start.data);
+            if (start.leftside != null)
             {
-                Display(parent.leftside);
+                Console.WriteLine("Left :" + start.leftside.data);
             }
-            if (parent.Rightside != null)
+            if (start.Rightside != null)
+                Console.WriteLine("Right :" + start.Rightside.data);
+            if (start.leftside != null)
             {
-                Display(parent.Rightside);
+                Display(start.leftside);
+            }
+            if (start.Rightside != null)
+            {
+                Display(start.Rightside);
             }
         }
     }
 }
-

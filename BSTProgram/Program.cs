@@ -10,13 +10,15 @@ namespace BSTProgram
         }
         public static void BinarySearchTree()
             {
-                Console.WriteLine("Welcome to the Binary Search Tree program");
-
-                var bst = new BinarySearch<int>();
-                bst.Add(56);
-                bst.Add(30);
-                bst.Add(70);
-                bst.Display(bst.value);
+            Console.WriteLine("Welcome to the Binary Search Tree program");
+            var bst = new BinarySearch<int>();
+            var numbers = new int[5] { 4, 5, 78, 34, 53 };
+            foreach (var num in numbers)
+            {
+                bst.Add(num);
             }
+            bst.Display(bst.value);
+            Console.WriteLine(bst.Size());
+        }
     }
 }
